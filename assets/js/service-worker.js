@@ -20,7 +20,7 @@ self.addEventListener("install", function(event) {
 });
 
 self.addEventListener("fetch", function(event) {
-  event.respondWith(
+  event.responsWith(
     caches
       .match(event.request, { cacheName: CACHE_NAME })
       .then(function(response) {
