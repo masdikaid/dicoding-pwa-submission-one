@@ -1,19 +1,19 @@
 // REGISTER SERVICE WORKER
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
+  window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("service-worker.js")
-      .then(function() {
+      .then(() => {
         console.log("Pendaftaran ServiceWorker berhasil");
       })
-      .catch(function() {
+      .catch(() => {
         console.log("Pendaftaran ServiceWorker gagal");
       });
   });
 } else {
   console.log("ServiceWorker belum didukung browser ini.");
 }
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     // Activate sidebar nav
     var elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems);
@@ -24,18 +24,18 @@ document.addEventListener("DOMContentLoaded", function() {
    
     function loadNav() {
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = () => {
           if (this.readyState == 4) {
             if (this.status != 200) return;
        
             // Muat daftar tautan menu
-            document.querySelectorAll(".topnav, .sidenav").forEach(function(elm) {
+            document.querySelectorAll(".topnav, .sidenav").forEach( elm => {
               elm.innerHTML = xhttp.responseText;
             });
        
             // Daftarkan event listener untuk setiap tautan menu
-            document.querySelectorAll(".sidenav a, .topnav a").forEach(function(elm) {
-              elm.addEventListener("click", function(event) {
+            document.querySelectorAll(".sidenav a, .topnav a").forEach( elm => {
+              elm.addEventListener("click", event => {
                 // Tutup sidenav
                 var sidenav = document.querySelector(".sidenav");
                 M.Sidenav.getInstance(sidenav).close();
@@ -54,12 +54,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // Load page content    
     function loadPage(page) {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
+    xhttp.onreadystatechange = () => {
+        if (this.readyState === 4) {
         var content = document.querySelector("#body-content");
-        if (this.status == 200) {
+        if (this.status === 200) {
             content.innerHTML = xhttp.responseText;
-        } else if (this.status == 404) {
+        } else if (this.status === 404) {
             content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
         } else {
             content.innerHTML = "<p>Ups.. halaman tidak dapat diakses.</p>";

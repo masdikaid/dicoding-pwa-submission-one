@@ -23,3 +23,7 @@ nav img {
 .card-padding {
     padding-bottom: 50px;
 }
+
+.card {
+    padding: 20px;
+}

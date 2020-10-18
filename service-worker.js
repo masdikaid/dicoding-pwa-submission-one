@@ -1,5 +1,5 @@
 const CACHE_NAME = "firstpwa";
-var urlsToCache = [
+const urlsToCache = [
   "/",
   "/nav.html",
   "/manifest.json",
@@ -20,19 +20,19 @@ var urlsToCache = [
   "/assets/image/rm.png"
 ];
  
-self.addEventListener("install", function(event) {
+self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
+    caches.open(CACHE_NAME).then( cache => {
       return cache.addAll(urlsToCache);
     })
   );
 });
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", event => {
   event.respondWith(
     caches
       .match(event.request, { cacheName: CACHE_NAME })
-      .then(function(response) {
+      .then( response => {
         if (response) {
           console.log("ServiceWorker: Gunakan aset dari cache: ", response.url);
           return response;
