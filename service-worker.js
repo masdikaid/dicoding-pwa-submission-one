@@ -17,7 +17,9 @@ const urlsToCache = [
   "/assets/image/liverpool.png",
   "/assets/image/milan.png",
   "/assets/image/mu.png",
-  "/assets/image/rm.png"
+  "/assets/image/rm.png",
+  "https://fonts.googleapis.com/icon?family=Material+Icons",
+  "https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
 ];
  
 self.addEventListener("install", event => {
@@ -34,13 +36,12 @@ self.addEventListener("fetch", event => {
       .match(event.request, { cacheName: CACHE_NAME })
       .then( response => {
         if (response) {
-          console.log("ServiceWorker: Gunakan aset dari cache: ", response.url);
+          console.log(`ServiceWorker: Gunakan aset dari cache: ${response.url}`);
           return response;
         }
  
         console.log(
-          "ServiceWorker: Memuat aset dari server: ",
-          event.request.url
+          `ServiceWorker: Memuat aset dari server: ${event.request.url}`
         );
         return fetch(event.request);
       })
