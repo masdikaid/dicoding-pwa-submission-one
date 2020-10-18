@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+nav img {
+    height: 50px !important; 
+    margin: 7px;
+}
+
+.card-title {
+    height: 100px;
+}
+
+.card img {
+    width: 100%;
+    margin: auto !important;
+}
+
+.content {
+    margin-top: 20px;
+}
