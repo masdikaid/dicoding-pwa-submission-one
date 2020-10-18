@@ -17,9 +17,7 @@ const urlsToCache = [
   "/assets/image/liverpool.png",
   "/assets/image/milan.png",
   "/assets/image/mu.png",
-  "/assets/image/rm.png",
-  "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
+  "/assets/image/rm.png"
 ];
  
 self.addEventListener("install", event => {
