@@ -1,0 +1,16 @@
+{
+    "name": "Soccer Score",
+    "short_name": "Soccer Score",
+    "description": "Lihat Score Mudah",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#2196F3",
+    "theme_color": "#2196F3",
+    "icons": [
+        {
+            "src": "/assets/image/Icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
