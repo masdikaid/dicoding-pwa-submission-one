@@ -15,8 +15,6 @@ if ("serviceWorker" in navigator) {
 }
 console.log("preloaded")
 document.addEventListener("DOMContentLoaded", () => {
-    // Activate sidebar nav
-    console.log("loaded")
     const elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems);
     loadNav();
@@ -28,14 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function loadNav() {
       const xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = () => {
-        if (this.readyState == 4) {
-          if (this.status != 200) return;
-          console.log("xhttp")
-          // Muat daftar tautan menu
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
           document.querySelectorAll(".topnav, .sidenav").forEach( elm => {
             elm.innerHTML = xhttp.responseText;
           });
-        }
+        };
       };
       xhttp.open("GET", "nav.html", true);
       xhttp.send();
@@ -43,20 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load page content    
     function loadPage(page) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = () => {
-        if (this.readyState == 4) {
-        const content = document.querySelector("#body-content");
-        if (this.status == 200) {
-            content.innerHTML = xhttp.responseText;
-        } else if (this.status == 404) {
-            content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = () => {
+        let content = document.querySelector("#body-content");
+        if (xhttp.readyState === 4 && xhttp.status === 200) {
+          content.innerHTML = xhttp.responseText;
+        } else if (xhttp.status === 404) {
+          content.innerHTML = "<p>Halaman tidak ditemukan.</p>";
         } else {
-            content.innerHTML = "<p>Ups.. halaman tidak dapat diakses.</p>";
-        }
-        }
+          content.innerHTML = "<p>Ups.. halaman tidak dapat diakses.</p>";
+        };
+      };
+      xhttp.open("GET", `pages/${page}.html`, true);
+      xhttp.send();
     };
-    xhttp.open("GET", `pages/${page}.html`, true);
-    xhttp.send();
-    }
   });
