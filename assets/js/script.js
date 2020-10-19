@@ -4,16 +4,17 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("service-worker.js")
       .then(() => {
-        console.log("Pendaftaran ServiceWorker berhasil");
+        // console.log("Pendaftaran ServiceWorker berhasil");
       })
       .catch(() => {
-        console.log("Pendaftaran ServiceWorker gagal");
+        console.error("Pendaftaran ServiceWorker gagal");
       });
   });
 } else {
-  console.log("ServiceWorker belum didukung browser ini.");
+  console.warn("ServiceWorker belum didukung browser ini.");
 }
-console.log("preloaded")
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const elems = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elems);
@@ -29,6 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
           document.querySelectorAll(".topnav, .sidenav").forEach( elm => {
             elm.innerHTML = xhttp.responseText;
+            elm.addEventListener("click", event => {
+              // Tutup sidenav
+              const sidenav = document.querySelector(".sidenav");
+              M.Sidenav.getInstance(sidenav).close();
+     
+              // Muat konten halaman yang dipanggil
+              const page = event.target.getAttribute("href").substr(1);
+              loadPage(page);
+            });
           });
         };
       };
