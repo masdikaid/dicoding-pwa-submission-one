@@ -34,13 +34,12 @@ self.addEventListener("fetch", event => {
       .match(event.request, { cacheName: CACHE_NAME })
       .then( response => {
         if (response) {
-          console.log(`ServiceWorker: Gunakan aset dari cache: ${response.url}`);
+          // console.log(`ServiceWorker: Gunakan aset dari cache: ${response.url}`);
           return response;
         }
- 
-        console.log(
-          `ServiceWorker: Memuat aset dari server: ${event.request.url}`
-        );
+        // console.log(
+        //   `ServiceWorker: Memuat aset dari server: ${event.request.url}`
+        // );
         return fetch(event.request);
       })
   );
